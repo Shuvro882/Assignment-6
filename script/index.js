@@ -4,12 +4,41 @@ const loadCategories = () => {
     .then(json => displayCategories(json.categories));
 };
 
+const manageSpinner=(status)=>{
+    if(status==true){
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("cards").classList.add("hidden");
+
+    }else{
+        document.getElementById("cards").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden");
+    }
+}
+
+
+
+
+
+const removeActive=()=>{
+    const lessonButtons=document.querySelectorAll(".lessons-btn")
+    // console.log(lessonButtons);
+    lessonButtons.forEach(btn=> btn.classList.remove("active"));
+}
+
+
+
 const loadTreeDetails=(id)=>{
-  
+  manageSpinner(true);
   const url=`https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url)
   .then(res=>res.json())
-  .then(data=>disCategoryTree(data.plants))
+  .then(data=>{
+    removeActive();
+    const clickBtn=document.getElementById(`lesson-btn-${id}`);
+    // console.log(clickBtn)
+    clickBtn.classList.add("active");
+    disCategoryTree(data.plants)
+  })
 };
 
 const disCategoryTree=(trees)=>{
@@ -22,7 +51,7 @@ const disCategoryTree=(trees)=>{
         card.innerHTML=`
         <div class="shadow p-3 bg-white rounded-lg">
         <img src="${tree.image}" alt="${tree.name}" class="w-full object-cover rounded-lg h-[300px]">
-        <h3 onclick="loadTreeDetail(${tree.id})" class="font-semibold mt-2">${tree.name}</h3>
+        <h3 onclick="loadTreeDetail(${tree.id})" class="font-semibold mt-2 cursor-pointer">${tree.name}</h3>
         <p class="text-sm text-gray-500">${tree.description}</p>
         <div class="flex justify-between items-center">
           <button class="text-[#15803D] bg-[#DCFCE7] rounded-full p-1">${tree.category}</button>
@@ -33,8 +62,12 @@ const disCategoryTree=(trees)=>{
         </button>
       </div>
         `;
-        treeContainer.append(card);
-    })
+        treeContainer.appendChild(card);
+        const addToCartBtn = card.querySelector(".add-to-cart");
+        addToCartBtn.addEventListener("click", () => addToCart(tree));
+    });
+    
+    manageSpinner(false);
 };
 
 
@@ -45,7 +78,7 @@ const displayCategories = (categories) => {
 
     for (let category of categories) {
         const btnUl = document.createElement("ul");
-        btnUl.innerHTML = `<li onclick="loadTreeDetails('${category.id}')" class="p-2 rounded cursor-pointer hover:bg-green-500">${category.category_name}</li>`;
+        btnUl.innerHTML = `<li id="lesson-btn-${category.id}" onclick="loadTreeDetails('${category.id}')" class="lessons-btn p-2 rounded cursor-pointer hover:bg-green-500">${category.category_name}</li>`;
         categoryList.append(btnUl);
     }
 };
@@ -85,6 +118,8 @@ const displayTreeDetails=(tree)=>{
      `;
      document.getElementById("tree_modal").showModal();
 }
+
+
 
 const displayTrees = (trees) => {
     const cardContainer = document.getElementById("cards");
