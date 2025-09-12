@@ -50,9 +50,9 @@
 
 <!-- Banner -->
 <section class="banner bg-[#cff0dc]">
-  <div class="flex flex-col lg:flex-row justify-between items-center">
+  <div class="flex flex-col md:flex-row justify-between items-center">
     <div class="w-full lg:w-1/4 flex justify-center"><img src="./assets/hero-leaf1.png" alt=""></div>
-    <div class="w-full lg:w-2/4 text-center">
+    <div class="w-full lg:w-2/4 text-center py-5">
       <h1 class="font-bold text-5xl">Plant a Tree, Grow a Future</h1>
       <p class="my-3 text-[#1f2937]">Join our mission to plant 1 million trees and make the Earth greener for future generations.</p>
       <a class="btn my-3 rounded-full bg-[#facc15] text-[#15803d]">Get Involved</a>
@@ -63,7 +63,6 @@
 
 <!-- Campaign Section -->
 <section class="about py-10 bg-[#F0FDF4]">
-
   <h2 class="text-2xl font-bold text-center mb-6">Choose Your Trees</h2>
   <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6">
 
@@ -74,13 +73,15 @@
     </aside>
 
     <!-- Tree Cards -->
-    <main class="col-span-8">
+    <main class="col-span-7">
       
-      <div id="cards" class="grid grid-cols-1  md:grid-cols-3 gap-4"></div>
+      <div id="cards" class="grid grid-cols-1  md:grid-cols-3 gap-4">
+        
+      </div>
     </main>
 
     <!-- Cart -->
-    <aside class="col-span-2 p-4 rounded-lg shadow">
+    <aside class="col-span-3 p-4 rounded-lg shadow">
       <h2 class="text-lg font-bold mb-3">Your Cart</h2>
       <ul id="cart-items" class="space-y-2"></ul>
       <p class="mt-4 font-semibold">Total: <span id="total-price">0</span> Tk</p>
