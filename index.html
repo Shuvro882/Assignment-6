@@ -49,7 +49,7 @@
 </header>
 
 <!-- Banner -->
-<section class="banner bg-[#cff0dc] py-10">
+<section class="banner bg-[#cff0dc]">
   <div class="flex flex-col lg:flex-row justify-between items-center">
     <div class="w-full lg:w-1/4 flex justify-center"><img src="./assets/hero-leaf1.png" alt=""></div>
     <div class="w-full lg:w-2/4 text-center">
@@ -63,22 +63,24 @@
 
 <!-- Campaign Section -->
 <section class="about py-10 bg-[#F0FDF4]">
+
+  <h2 class="text-2xl font-bold text-center mb-6">Choose Your Trees</h2>
   <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6">
 
     <!-- Categories -->
-    <aside class="col-span-2 p-4 rounded-lg shadow bg-white">
+    <aside class="col-span-2 p-4 rounded-lg shadow">
       <h2 class="text-lg font-bold mb-3">Categories</h2>
       <ul id="category-list" class="space-y-2"></ul>
     </aside>
 
     <!-- Tree Cards -->
-    <main class="col-span-7">
-      <h2 class="text-2xl font-bold text-center mb-6">Choose Your Trees</h2>
+    <main class="col-span-8">
+      
       <div id="cards" class="grid grid-cols-1  md:grid-cols-3 gap-4"></div>
     </main>
 
     <!-- Cart -->
-    <aside class="col-span-3 bg-white p-4 rounded-lg shadow">
+    <aside class="col-span-2 p-4 rounded-lg shadow">
       <h2 class="text-lg font-bold mb-3">Your Cart</h2>
       <ul id="cart-items" class="space-y-2"></ul>
       <p class="mt-4 font-semibold">Total: <span id="total-price">0</span> Tk</p>
@@ -93,24 +95,30 @@
 <section class="about py-5 bg-[#F0FDF4]">
   
   <h1 class="text-3xl font-semibold text-center mb-6">About The Campaign</h1>
- <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 max-w-6xl w-full mx-auto items-center">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-2 px-6 max-w-4xl w-full mx-auto items-center">
 
-    <div class="md:col-span-6 flex justify-center">
-      <img src="./assets/about.png" alt="About Green Earth" class="w-full md:w-[300px] rounded-lg">
-    </div>
-
-    <div class="md:col-span-6 flex flex-col justify-center text-[#1f2937] px-5">
-      <p class="">
-        Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.
-      </p>
-      <ul class="list-disc list-inside">
-        <li>Restoration of natural habitats</li>
-        <li>Improvement of air quality</li>
-        <li>Support for local communities</li>
-      </ul>
-    </div>
-
+  <!-- Image -->
+  <div class="md:col-span-6 flex justify-center">
+    <img src="./assets/about.png" alt="About Green Earth" class="w-full md:w-[350px] md:h-[400px] object-cover rounded-lg">
   </div>
+
+  <!-- Text -->
+  <div class="md:col-span-6 flex flex-col justify-center text-[#1f2937] md:pl-2">
+    <p>
+      Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.
+    </p>
+    <ul class="list-disc list-inside mt-2">
+      <li>Restoration of natural habitats</li>
+      <li>Improvement of air quality</li>
+      <li>Support for local communities</li>
+    </ul>
+  </div>
+
+</div>
+
+
+
+
   
 </section>
 
@@ -165,6 +173,30 @@
 <footer class="footer sm:footer-horizontal footer-center bg-[#14532d] text-white p-4">
   <p>© 2025 Green Earth. All Rights Reserved.</p>
 </footer>
+
+
+<!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+<dialog id="tree_modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="details-container" class="space-y-2">
+      
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+
+
+
+
+
 
 <!-- JavaScript -->
 <script src="./script/index.js"></script>

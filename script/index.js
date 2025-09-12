@@ -21,6 +21,36 @@ const loadAllTrees = () => {
     .then(data => displayTrees(data.plants));
 };
 
+
+const loadTreeDetail=async(id)=>{
+    const url=`https://openapi.programming-hero.com/api/plant/${id}`
+    
+    const res=await fetch(url);
+    const details= await res.json();
+    displayTreeDetails(details.plants);
+}
+const displayTreeDetails=(tree)=>{
+     console.log(tree);
+     const detailsBox=document.getElementById("details-container");
+     detailsBox.innerHTML = `
+     <div class="shadow p-3 bg-white rounded-lg">
+        <img src="${tree.image}" alt="${tree.name}" class="w-full object-cover rounded-lg h-[300px]">
+        <h3 onclick="loadTreeDetail(${tree.id})" class="font-semibold mt-2">${tree.name}</h3>
+        <p class="text-sm text-gray-500">${tree.description}</p>
+        <div class="flex justify-between items-center">
+          <button class="text-[#15803D] bg-[#DCFCE7] rounded-full p-1">${tree.category}</button>
+          <p class="font-bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i>${tree.price}</p>
+        </div>
+        <button class="mt-2 w-full bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600 add-to-cart">
+          Add to Cart
+        </button>
+      </div>
+     
+     
+     `;
+     document.getElementById("tree_modal").showModal();
+}
+
 const displayTrees = (trees) => {
     const cardContainer = document.getElementById("cards");
     cardContainer.innerHTML = "";
@@ -31,7 +61,7 @@ const displayTrees = (trees) => {
 
         div.innerHTML = `
         <img src="${tree.image}" alt="${tree.name}" class="w-full object-cover rounded-lg h-[300px]">
-        <h3 class="font-semibold mt-2">${tree.name}</h3>
+        <h3 onclick="loadTreeDetail(${tree.id})" class="font-semibold mt-2">${tree.name}</h3>
         <p class="text-sm text-gray-500">${tree.description}</p>
         <div class="flex justify-between items-center">
           <button class="text-[#15803D] bg-[#DCFCE7] rounded-full p-1">${tree.category}</button>
